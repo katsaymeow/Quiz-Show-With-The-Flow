@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(228, 192, 192);
+    color:rgb(65, 25, 103);
+};
+
+#h1 {
+    background-color: rgb(227, 132, 17); 
+    
+};
+
+.questions {
+    width: 75%;
+    height: 75%;
+}
+
+button {
+    background-color: rgb(168, 191, 210);
+    padding: 10px; 
+    display: list-item;
+};
