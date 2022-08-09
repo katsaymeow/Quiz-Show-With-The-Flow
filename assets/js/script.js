@@ -3,9 +3,8 @@ var A = document.querySelector(".A");
 var B = document.querySelector(".B");
 var C = document.querySelector(".C");
 var D = document.querySelector(".D");
-var question = document.querySelector(".question-heading");
-var correctAnswer = document.addEventListener("click", checkAnswer());
-
+var question = document.querySelector(".question-input");
+// var submitAnswer = document.addEventListener("click", checkAnswer());
 var questionsAsked = [
     {
         question: "How are CSS styles applied to an html file?", 
@@ -47,29 +46,64 @@ var questionsAsked = [
 ];
 
 //this will trigger each question window and loop thru each question
-function startQuiz() {
-    var output = [];
-  questionsAsked.forEach(
-    (currentQuestion, questionNumber) => {
-        var answers = [];
-        for( letter in currentQuestion.answers){
-            answers.push(
-                <label>
-                    <input type="radio" name="question${questionNumber}" value="${letter}"></input>
-                        ${letter}:
-                        ${currentQuestion.answers[letter]}
-                </label>
-            );
+
+var tickReso = 1000; // in ms
+var timerLength = 60; // multiple of tickReso
+startTimer.value = timerLength * tickReso;
+
+
+document.addEventListener("visibilityChange", tick);
+
+var endTime, timeHdl;
+function startTimer(event) {
+    endTime = performance.now() + Number(event.target.value);
+    tick();
+};
+function tick() {
+    clearTimeout(timeHdl);
+    var till = endTime - performance.now();
+    till = till <= 0 ? 0 : till;
+    if(till) {
+        if(document.visibilityState === "visible") {
+            timeEl.textContent = (till / tickReso + 1 | 0);
         }
-       output.push() 
+        timeEl.dateTime = "PT0H0M" + (till / tickReso + 1 | 0) + "S";
+        timeHdl = setTimeout(tick, (till % tickReso) + 10);
+    } else {
+        timeEl.dateTime = "PT0H0M0S";
+        timeEl.textContent = 0;
     }
-  )
 }
+
+
+// console.log(startTimer());
+// console.log(questionsAsked)
+//     function runQuiz() {
+//        question.textContent;
+//        A.textContent;
+//        B.textContent;
+//        C.textContent;
+//        D.textContent;
+    //    correctAnswer.addEventListener("click", checkAnswer())
+    // }
+   
+    
+    // {
+    //    for( i=0, i<questionsAsked, i++;) {
+
+    //    } 
+    // } 
+
+   
+
 //do i need a answer() or can it be a var?
-checkAnswer()
+// checkAnswer()
+//     if("click" === correctAnswer, correct++)
+//  else (correct--)
 
-startQuiz.addEventListener("click", startQuiz());
+
+
+startQuiz.addEventListener("click", startTimer);
 
 
 
-//each question must 
