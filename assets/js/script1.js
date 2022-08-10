@@ -86,7 +86,7 @@ var wrongTime = (time - 10);
 var timeEl = document.getElementById("timeEl");
 
 function timer() {
-    setInterval(timeEl.innerText = Math.floor((time % (1000 * 60)) / 1000))
+    setInterval(timeEl = Math.floor((time % (1000 * 60)) / 1000))
     if (wrongAnswerCount +1) timer() - wrongTime;
 }
 
@@ -125,7 +125,7 @@ function scoreDisplay(){
     wrongAnswer.innerHTML = wrongAnswerCount;
 }
 
-startBtn.addEventListener("click", startQuiz);
+// startBtn.addEventListener("click", startQuiz);
 
 
 console.log(userAnswer)
