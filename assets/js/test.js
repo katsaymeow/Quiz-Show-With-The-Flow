@@ -1,4 +1,15 @@
-//started with the questions array
+var startBtn = document.querySelector("click", ".start-button");
+
+startBtn.addEventListener(timer(),
+loadQuestions())
+    startBtn.disabled = true
+var currentQuestionIndex = 0;
+var questionInput = document.getElementById('question-input');
+var answerA = document.getElementById('A');
+var answerB = document.getElementById('B');
+var answerC = document.getElementById('C');
+var answerD = document.getElementById('D');
+var choiceButtons = document.querySelectorAll(".js-choice")
 var questionsAsked = [
     {
         question: "How are CSS styles applied to an html file?", 
@@ -62,27 +73,19 @@ function loadQuestions(){
             var questionIndex = e.target.dataset.questionIndex;
             var choiceQuestion = questionsAsked[questionIndex];
             var correctAnswer = choiceQuestion.correctAnswer;
-            console.log(currentQuestionIndex);
             if (answerText === correctAnswer) {
-                console.log("correct");
+                // console.log("correct");
                 // answerIsCorrect();
                 currentQuestionIndex++;
                 loadQuestions();
-            } else { (answerText !== correctAnswer) 
-                currentQuestionIndex++
-                console.log("wrong");
+            } else {
+                currentQuestionIndex++;
+                // console.log("wrong");
             }
         } )
     }
- 
-    
-    // add an event listener to your answer buttons. When clicked we increase the totalQuestionArray++ and then we evaluate the answer, we can also load the next questions using loadQuestions 
 }
 loadQuestions();
-//this need to finish loading next
-//HOW TO LISTEN FOR THE CORRECTANSWER???
-
-// this function is for the timer
 var time = 90;
 var wrongTime = (time - 10);
 var timeEl = document.getElementById("timeEl");
@@ -91,59 +94,3 @@ function timer() {
     setInterval(timeEl = Math.floor((time % (1000 * 60)) / 1000))
     if (wrongAnswerCount +1) timer() - wrongTime;
 }
-
-// var submitBtn = document.querySelector("click", "submit-button");
-// var nextBtn = document.querySelector("click", "next-button");
-// FINISH ME
-var startBtn = document.querySelector("click", ".start-button");
-// startBtn.addEventListener("click", loadQuestions(), timer());
-// function 
-
-var rightAnswerCount = 0;
-var rightAnswer = document.getElementById("answer-right");
-var wrongAnswerCount = 0;
-var wrongAnswer = document.getElementById("answer-wrong");
-
-function scoreDisplay(answer){
-
-    if(questionsAsked.correct == answer){
-        rightAnswerCount++;
-        answerIsCorrect();
-        rightAnswer.innerHTML = rightAnswerCount;
-    } else {
-        wrongAnswerCount++;
-        answerIsWrong();
-        wrongAnswer.innerHTML = wrongAnswerCount;
-    }
-}
-function answerIsCorrect() {
-    document.getElementById("correct")
-}
-function answerIsWrong(){
-    document.getElementById("wrong")
- }
-//post the score to the html
-function scoreOutput(){
-    for(var qArray = 0; qArray <= lastQuestionArray; qArray++){
-      score += "" + qArray; 
-    }//not sure if this will work
-};
-//functions for correct and incorrect answers
-
-// console.log(userAnswer)
-// console.log(startQuiz)
-// console.log(timer)
-// console.log(loadQuestions)
-// function timerStart() {
-  
-//     var timerInterval = setInterval(function() {
-//       timerCount--;
-//       timer.innerHTML = timerCount;
-  
-//       if(timerCount <= 0) {
-       
-//           clearInterval(timerInterval);
-//       }
-  
-//     }, 1000);
-// }
